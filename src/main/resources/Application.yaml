@@ -1,4 +1,11 @@
 jwt:
   private-key: classpath:jwt/app.key
   public-key: classpath:jwt/app.pub
-  ttl: 1m
+  ttl: 1h
+
+  spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/matchnplaydb}
+    username: ${SPRING_DATASOURCE_USERNAME:postgres}
+    password: ${SPRING_DATASOURCE_PASSWORD:root}
+    driver-class-name: org.postgresql.Driver
