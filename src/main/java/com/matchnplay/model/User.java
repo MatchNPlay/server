@@ -48,6 +48,10 @@ public class User {
     @Schema(description = "Phone number of the user", example = "+1234567890", required = true)
     private String phone;
 
+    @Column(name = "email_verified", nullable = false)
+    @Schema(description = "Indicates if the user's email is verified", example = "false", required = true)
+    private boolean email_verified;
+
     @Column(name = "created_at", nullable = false, updatable = false)
     @CreatedDate
     @Schema(description = "Timestamp when the user was created", example = "2025-05-18T10:15:30", required = true)

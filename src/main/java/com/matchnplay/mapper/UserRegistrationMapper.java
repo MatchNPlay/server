@@ -16,6 +16,7 @@ public class UserRegistrationMapper {
         user.setPassword(registrationRequestDto.password());
         user.setFullname(registrationRequestDto.fullname());
         user.setPhone(registrationRequestDto.phone());
+        user.setEmail_verified(false);
 
         return user;
     }
