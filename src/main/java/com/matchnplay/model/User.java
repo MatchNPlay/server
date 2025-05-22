@@ -50,7 +50,7 @@ public class User {
 
     @Column(name = "email_verified", nullable = false)
     @Schema(description = "Indicates if the user's email is verified", example = "false", required = true)
-    private boolean email_verified;
+    private boolean emailVerified;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     @CreatedDate

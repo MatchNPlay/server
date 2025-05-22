@@ -16,7 +16,7 @@ public class UserRegistrationMapper {
         user.setPassword(registrationRequestDto.password());
         user.setFullname(registrationRequestDto.fullname());
         user.setPhone(registrationRequestDto.phone());
-        user.setEmail_verified(false);
+        user.setEmailVerified(false);
 
         return user;
     }
@@ -25,7 +25,7 @@ public class UserRegistrationMapper {
             final User user) {
 
         return new RegistrationResponseDto(
-                user.getUsername(), user.getEmail());
+                user.getUsername(), user.getEmail(), !user.isEmailVerified());
     }
 
 }
