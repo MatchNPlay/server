@@ -32,7 +32,23 @@ public class EmailVerificationService {
         // Localhost URL with userId and OTP token
         final var emailVerificationUrl = "http://localhost:8080/api/auth/email/verify?uid=%s&t=%s"
                 .formatted(userId, token);
-        final var emailText = "Click the link to verify your email: " + emailVerificationUrl;
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResponseStatusException(GONE, "User account has been deleted or deactivated"));
+
+        final var emailText = String.format(
+                """
+                        Dear %s,
+
+                        Thank you for registering with MatchNPlay! We're thrilled to have you join our community. To complete your registration and verify your email address, please click the link below:
+
+                        %s
+
+                        If you did not create an account with us, please ignore this email. For any questions or assistance, feel free to reach out to our support team.
+
+                        Warm regards,
+                        The MatchNPlay Team
+                        """,
+                user.getUsername(), emailVerificationUrl);
 
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(email);
