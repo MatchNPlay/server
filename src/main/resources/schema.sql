@@ -14,6 +14,16 @@ CREATE TABLE IF NOT EXISTS users (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- REFRESH_TOKENS table: stores refresh tokens for users
+CREATE TABLE IF NOT EXISTS refresh_tokens (
+    id UUID PRIMARY KEY,
+    user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    expires_at TIMESTAMP NOT NULL
+);
+
+CREATE INDEX idx_refresh_token_user_id ON refresh_tokens (user_id);
+
 -- GAMES table: stores games created by hosts
 CREATE TABLE IF NOT EXISTS games (
     id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),

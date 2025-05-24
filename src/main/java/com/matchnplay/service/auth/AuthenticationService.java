@@ -12,19 +12,19 @@ import com.matchnplay.dto.auth.AuthenticationResponseDto;
 @RequiredArgsConstructor
 public class AuthenticationService {
 
-    private final AuthenticationManager authenticationManager;
-    private final JwtService jwtService;
+        private final AuthenticationManager authenticationManager;
+        private final JwtService jwtService;
 
-    public AuthenticationResponseDto authenticate(
-            final AuthenticationRequestDto request) {
+        public AuthenticationResponseDto authenticate(
+                        final AuthenticationRequestDto request) {
 
-        final var authToken = UsernamePasswordAuthenticationToken
-                .unauthenticated(request.username(), request.password());
+                final var authToken = UsernamePasswordAuthenticationToken
+                                .unauthenticated(request.username(), request.password());
 
-        final var authentication = authenticationManager
-                .authenticate(authToken);
+                final var authentication = authenticationManager
+                                .authenticate(authToken);
 
-        final var token = jwtService.generateToken(request.username());
-        return new AuthenticationResponseDto(token);
-    }
+                final var token = jwtService.generateToken(request.username());
+                return new AuthenticationResponseDto(token);
+        }
 }
