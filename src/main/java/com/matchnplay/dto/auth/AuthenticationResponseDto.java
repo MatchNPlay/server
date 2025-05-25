@@ -1,4 +1,8 @@
 package com.matchnplay.dto.auth;
 
-public record AuthenticationResponseDto(String token) {
+import java.util.UUID;
+
+public record AuthenticationResponseDto(
+        String accessToken,
+        UUID refreshToken) {
 }

@@ -2,6 +2,8 @@ package com.matchnplay.model;
 
 import jakarta.persistence.*;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import lombok.Getter;
@@ -61,5 +63,8 @@ public class User {
     @LastModifiedDate
     @Schema(description = "Timestamp when the user was last updated", example = "2025-05-18T10:15:30", required = true)
     private Instant updatedAt;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<RefreshToken> refreshTokens = new ArrayList<>();
 
 }
